@@ -9,5 +9,6 @@
  * @author Cousiño
  */
 public class ClasePruebaGit {
+    String prueba;
     
 }
