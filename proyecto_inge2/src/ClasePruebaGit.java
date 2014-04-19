@@ -10,5 +10,5 @@
  */
 public class ClasePruebaGit {
     String prueba;
-    
+    private int hola;
 }
