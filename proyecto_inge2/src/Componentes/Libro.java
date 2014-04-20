@@ -12,7 +12,7 @@ public abstract class Libro {
     private String autor;
     private String anho_publicacion;
     private int cantidad;
-    private Editorial cod_editorial;
+    private String cod_editorial;
 
     public String getCod_libro() {
         return cod_libro;
@@ -54,11 +54,11 @@ public abstract class Libro {
         this.cantidad = cantidad;
     }
 
-    public Editorial getCod_editorial() {
+    public String getCod_editorial() {
         return cod_editorial;
     }
 
-    public void setCod_editorial(Editorial cod_editorial) {
+    public void setCod_editorial(String cod_editorial) {
         this.cod_editorial = cod_editorial;
     }
 
