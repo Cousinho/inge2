@@ -96,22 +96,22 @@ public abstract class BDLibro {
     }
     
     //método que busca categoria por nombre
-    public static Editorial buscarNom(String nombre) throws SQLException {
+    public static Libro buscarNom(String nombre_libro) throws SQLException {
         Connection conexion = Conexion_BD.getConnection();
         PreparedStatement sentencia_buscar = null;
-        Editorial editorial = null;
-        sentencia_buscar = conexion.prepareStatement("select * from editorial where nombre_editorial=?");
-        sentencia_buscar.setString(1, nombre);
+        Libro libro = null;
+        sentencia_buscar = conexion.prepareStatement("select * from libro where nombre_libro=?");
+        sentencia_buscar.setString(1, nombre_libro);
         ResultSet resultado = sentencia_buscar.executeQuery();
         if (resultado.next()) {
-            editorial = new Editorial() {
+            libro = new Libro() {
             };
-            editorial.setCod_Editorial(resultado.getString("cod_editorial"));
-            editorial.setNombre(nombre);
+            libro.setCod_libro(resultado.getString("cod_libro"));
+            libro.setNombre_libro(nombre_libro);
         }
         conexion.close();
         sentencia_buscar.close();
-        return editorial;
+        return libro;
     }
 
    
