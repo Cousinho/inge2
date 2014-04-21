@@ -1,41 +1,4 @@
-
-        if (rowsUpdated > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-     
-    
-     public static boolean actualizar(Libro libro) throws SQLException {
-        Connection conexion = Conexion_BD.getConnection();
-        PreparedStatement sentencia_actualizar = null;
-
-        sentencia_actualizar = conexion.prepareStatement("update editorial set nombre_editorial=? where cod_editorial=" + editorial.getCod_Editorial());
-        sentencia_actualizar.setString(1, editorial.getNombre_Editorial());
-        int rowsUpdated = sentencia_actualizar.executeUpdate();
-        conexion.close();
-        sentencia_actualizar.close();
-        if (rowsUpdated > 0) {
-            return true;
-        } else {/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package ComponenteBD;
-
-import Base_Datos.Conexion_BD;
-import Componentes.Libro;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-/**
- */*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
