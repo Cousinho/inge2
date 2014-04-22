@@ -22,10 +22,6 @@ import javax.swing.JOptionPane;
  * @author Cousiño
  */
 public class D_Libro extends javax.swing.JDialog {
-
-    /**
-     * Creates new form D_Libro
-     */
     boolean nuevo;
     Libro libro_actual=new Libro() {};
     public D_Libro(java.awt.Frame parent, boolean modal) {
@@ -233,12 +229,10 @@ public class D_Libro extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_b_cancelarActionPerformed
 
     private void b_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_aceptarActionPerformed
-        // TODO add your handling code here:
         boolean estado;
         if (nuevo==true){
             estado=Guardar();
@@ -281,7 +275,7 @@ public class D_Libro extends javax.swing.JDialog {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 D_Libro dialog = new D_Libro(new javax.swing.JFrame(), true);
