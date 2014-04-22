@@ -6,17 +6,55 @@
 
 package Pantallas;
 
+import ComponenteBD.BDEditorial;
+import ComponenteBD.BDLibro;
+import Componentes.Editorial;
+import Util.TablaModelo;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Cousiño
  */
-public class P_Editorial extends javax.swing.JFrame {
+public class P_Editorial extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form P_Editorial
      */
-    public P_Editorial() {
+    TablaModelo LEditorial = new TablaModelo();
+    TableRowSorter sorter = new TableRowSorter(LEditorial);
+    java.awt.Frame Padre;
+    public P_Editorial(java.awt.Frame Pantalla_padre,boolean modal) {
+        Padre=Pantalla_padre;
         initComponents();
+        actualizartabla();
+    }
+    
+    public void actualizartabla(){
+        limpiartabla();
+        String titulos[] = {"Codigo","Nombre"};
+        LEditorial.setColumnIdentifiers(titulos);
+        try {
+            for (Iterator<Editorial> it = BDEditorial.Lista() .iterator(); it.hasNext();) {
+                Editorial editorial = it.next();
+                String Datos[] = {editorial.getCod_Editorial(),editorial.getNombre_Editorial()};
+                LEditorial.addRow(Datos);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "ERROR: " + e.getMessage());
+        }
+    }
+    
+    public void limpiartabla(){
+        int tamaño =LEditorial.getRowCount()-1;
+        for(int i=tamaño; i>=0;i--){
+              LEditorial.removeRow(i );
+        }
     }
 
     /**
@@ -28,57 +66,174 @@ public class P_Editorial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_libros = new javax.swing.JTable();
+        nuevo = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jInternalFrame1.setVisible(true);
+
+        tabla_libros.setModel(LEditorial);
+        jScrollPane1.setViewportView(tabla_libros);
+
+        nuevo.setText("Nuevo");
+        nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoActionPerformed(evt);
+            }
+        });
+
+        editar.setText("Editar");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(editar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(editar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(eliminar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jInternalFrame1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
+        // TODO add your handling code here:
+        D_Libro insertar = null;
+        insertar = new D_Libro(Padre,true);
+        insertar.setLocationRelativeTo(null);
+        insertar.setResizable(false);
+        insertar.setVisible(true);
+
+        //Actualiza tabla despues de cerrar ventana insertar
+        insertar.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent e) {
+                actualizartabla();
+            }
+        });
+    }//GEN-LAST:event_nuevoActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        // TODO add your handling code here:
+        int fila=tabla_libros.getSelectedRow();
+        if (fila!=-1){
+            try {
+                Editorial l_envia = new Editorial(){};
+                Object valor = tabla_libros.getValueAt(fila, 0);
+                l_envia=BDEditorial.buscarId(valor.toString());
+                D_Editorial editar = new D_Editorial(Padre,true,l_envia);
+                editar.setLocationRelativeTo(null);
+                editar.setResizable(false);
+                editar.setVisible(true);
+                //Actualiza tabla despues de cerrar ventana modificar
+                editar.addWindowListener(new WindowAdapter() {
+                    public void windowClosed(WindowEvent e) {
+                        actualizartabla();
+                    }
+                });
+            } catch (SQLException ex) {
+                //Logger.getLogger(P_Ventas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila de la tabla");
+        }
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+        // TODO add your handling code here:
+        //recibe numero de fila seleccionada
+        int fila=tabla_libros.getSelectedRow();
+
+        //verifica que este seleccionada una fila
+        if (fila!=-1){
+            int seleccion = JOptionPane.showOptionDialog(
+                this, // Componente padre
+                "¿Desea eliminar este libro?",
+                "Seleccione una opción",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,    // null para icono por defecto.
+                new Object[] { "Si", "No"},    // null para YES, NO y CANCEL
+                "Si");
+            if (seleccion != -1)
+            {
+                if((seleccion + 1)==1)
+                {
+                    //recupera el objeto fila de la tabla a modificar
+                    Object valor = tabla_libros.getValueAt(fila, 0);
+                    try {
+                        //solicita eliminar fila selecionada
+                        BDLibro.eliminar(valor.toString());
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "No se puede eliminar libro");
+
+                    }
+
+                    //actualiza tabla despues de eliminar fila
+                    actualizartabla();
+                }
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Seleccione una fila de la tabla");
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(P_Editorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(P_Editorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(P_Editorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(P_Editorial.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new P_Editorial().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editar;
+    private javax.swing.JButton eliminar;
+    private javax.swing.JInternalFrame jInternalFrame1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton nuevo;
+    private javax.swing.JTable tabla_libros;
     // End of variables declaration//GEN-END:variables
 }
