@@ -12,7 +12,7 @@ public abstract class Conexion_BD {
         //datos de la conexion
         try {
             Class.forName("com.postgresql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost/bd_sistema";
+            String url = "jdbc:postgresql://localhost:5432/biblioteca";
             String user = "biblioadmin";
             String password = "admin";
             conexion= DriverManager.getConnection(url, user, password);
