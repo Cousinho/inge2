@@ -6,12 +6,16 @@
 
 package Pantallas;
 
+import ComponenteBD.BDEditorial;
 import ComponenteBD.BDLibro;
 import Componentes.Libro;
 import Util.Alfanumerico;
 import Util.AlfanumericoEspacio;
 import Util.Numerico;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -77,6 +81,19 @@ public class D_Libro extends javax.swing.JDialog {
            return false;
         }
     }
+    
+    private void setDatos(){
+        libro_actual.setCod_libro(t_codigo.getText());
+        libro_actual.setNombre_libro(t_nombre.getText());
+        libro_actual.setAutor(t_autor.getText());
+        libro_actual.setAnho_publicacion(t_anho.getText());
+        libro_actual.setCantidad(Integer.valueOf(t_cantidad.getText()));
+        try {
+            libro_actual.setCod_editorial(BDEditorial.buscarId(t_editorial.getText()));
+        } catch (SQLException ex) {
+            //Logger.getLogger(D_Usuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,8 +136,18 @@ public class D_Libro extends javax.swing.JDialog {
         jLabel7.setText("Editorial");
 
         b_aceptar.setText("Aceptar");
+        b_aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_aceptarActionPerformed(evt);
+            }
+        });
 
         b_cancelar.setText("Cancelar");
+        b_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                b_cancelarActionPerformed(evt);
+            }
+        });
 
         t_codigo.setEditable(false);
 
@@ -204,6 +231,28 @@ public class D_Libro extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void b_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_b_cancelarActionPerformed
+
+    private void b_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_aceptarActionPerformed
+        // TODO add your handling code here:
+        boolean estado;
+        if (nuevo==true){
+            estado=Guardar();
+        }
+        else{
+            estado=Actualizar();
+        }
+        if(estado){
+            this.dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "No se pudo guardar datos");
+        }
+    }//GEN-LAST:event_b_aceptarActionPerformed
 
     /**
      * @param args the command line arguments
