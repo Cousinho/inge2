@@ -78,17 +78,7 @@ public class P_Libro extends javax.swing.JInternalFrame {
 
         jInternalFrame1.setVisible(true);
 
-        tabla_libros.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        tabla_libros.setModel(LLibros);
         jScrollPane1.setViewportView(tabla_libros);
 
         nuevo.setText("Nuevo");
@@ -239,7 +229,7 @@ public class P_Libro extends javax.swing.JInternalFrame {
 
     /**
      * @param args the command line arguments
-     */
+     */ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton editar;
