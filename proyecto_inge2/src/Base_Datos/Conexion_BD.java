@@ -11,9 +11,9 @@ public abstract class Conexion_BD {
         Connection conexion = null;
         //datos de la conexion
         try {
-            Class.forName("com.postgresql.jdbc.Driver");
+            Class.forName("org.postgresql.Driver");
             String url = "jdbc:postgresql://localhost:5432/biblioteca";
-            String user = "biblioadmin";
+            String user = "adminbiblio";
             String password = "admin";
             conexion= DriverManager.getConnection(url, user, password);
         } catch (ClassNotFoundException e) {
@@ -23,6 +23,7 @@ public abstract class Conexion_BD {
             conexion=null;
             if(e.getErrorCode() == 0)
             {
+                System.out.println (e.getMessage().toString());
                 JOptionPane.showMessageDialog(null, "El servidor de base de datos no responde.\n"
                                                     + "Verifique que el servidor de base de datos este activo.\n"
                                                     + "También Verifique que exista la base de datos", 

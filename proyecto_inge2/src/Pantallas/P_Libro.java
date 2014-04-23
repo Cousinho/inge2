@@ -28,10 +28,12 @@ public class P_Libro extends javax.swing.JInternalFrame {
      */
     TablaModelo LLibros = new TablaModelo();
     TableRowSorter sorter = new TableRowSorter(LLibros);
-    java.awt.Frame Padre;
-    public P_Libro(java.awt.Frame Pantalla_padre,boolean modal) {
-        Padre=Pantalla_padre;
+    public static java.awt.Frame  pantalla;
+    public P_Libro(java.awt.Frame Pantalla_padre) {
+        Pantalla_padre=pantalla;
         initComponents();
+        tabla_libros.setRowSorter(sorter);
+        //actualizada datos de tablas
         actualizartabla();
     }
     
@@ -190,7 +192,7 @@ public class P_Libro extends javax.swing.JInternalFrame {
                 Libro l_envia = new Libro(){};
                 Object valor = tabla_libros.getValueAt(fila, 0);
                 l_envia=BDLibro.buscarId(valor.toString());
-                D_Libro editar = new D_Libro(Padre,true,l_envia);
+                D_Libro editar = new D_Libro(pantalla,true,l_envia);
                 editar.setLocationRelativeTo(null);
                 editar.setResizable(false);
                 editar.setVisible(true);
@@ -212,7 +214,7 @@ public class P_Libro extends javax.swing.JInternalFrame {
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
         D_Libro insertar = null;
-        insertar = new D_Libro(Padre,true);
+        insertar = new D_Libro(pantalla,true);
         insertar.setLocationRelativeTo(null);
         insertar.setResizable(false);
         insertar.setVisible(true);
