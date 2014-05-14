@@ -31,12 +31,6 @@
                       <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jCheckBox5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
@@ -64,8 +58,8 @@
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="570" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -108,9 +102,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="21" max="32767" attributes="0"/>
           </Group>
@@ -162,7 +153,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="f2" green="f2" red="f2" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de Usuarios"/>
+            <Property name="text" type="java.lang.String" value="Administraci&#xf3;n de Roles"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -177,12 +168,11 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="20">
-                <Column editable="true" title="Usuario" type="java.lang.Object">
-                  <Data value="jperez"/>
-                  <Data value="dvelilla"/>
-                  <Data value="mmartinez"/>
-                  <Data value="scampos"/>
+              <Table columnCount="3" rowCount="19">
+                <Column editable="true" title="Nombre de Rol" type="java.lang.Object">
+                  <Data value="Lider de Proyecto"/>
+                  <Data value="Miembro del Proyecto"/>
+                  <Data value="Administrador"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -200,11 +190,10 @@
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="Nombre" type="java.lang.Object">
-                  <Data value="Juan"/>
-                  <Data value="Diego"/>
-                  <Data value="Maria"/>
-                  <Data value="Sergio"/>
+                <Column editable="true" title="Descripcion" type="java.lang.Object">
+                  <Data value="Usuario que tiene permisos sobre todos los recursos del Proyecto, asi como la creacion del mismo"/>
+                  <Data value="Usuario que forma parte de un proyecto y que tiene acceso a ciertos recursos pero sin la posibilidad de modificarlos o eliminarlos"/>
+                  <Data value="Usuario que controla el ingreso, suspension y modificacion de informaci&#xf3;n de los usuarios dentro del sistema"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -222,33 +211,10 @@
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="Apellido" type="java.lang.Object">
-                  <Data value="Perez"/>
-                  <Data value="Velilla"/>
-                  <Data value="Martinez"/>
-                  <Data value="Campos"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                  <Data value="null"/>
-                </Column>
-                <Column editable="true" title="Correo Electr&#xf3;nico" type="java.lang.Object">
-                  <Data value="jperez@gmail.com"/>
-                  <Data value="dvelilla@gmail.com"/>
-                  <Data value="mmartinezhotmail.com"/>
-                  <Data value="scampos@live.com"/>
+                <Column editable="true" title="Permisos" type="java.lang.Object">
+                  <Data value="Creacion de roles de proyecto, asignacion de roles de proyecto a usuarios, solicitud de cambios en items de lineas base"/>
+                  <Data value="Consulta de proyectos de los cuales es miembro, permisos dentro de cada proyecto seg&#xfa;n los roles de proyecto que tiene asignado"/>
+                  <Data value="Creacion, consulta, modificacion y eliminacion de Usuarios"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -269,12 +235,7 @@
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-              <TableColumnModel selectionModel="0">
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
+              <TableColumnModel selectionModel="1">
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -292,6 +253,8 @@
                 </Column>
               </TableColumnModel>
             </Property>
+            <Property name="columnSelectionAllowed" type="boolean" value="true"/>
+            <Property name="rowHeight" type="int" value="64"/>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
             </Property>
@@ -301,12 +264,15 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Editar Usuario"/>
+        <Property name="text" type="java.lang.String" value="Editar Rol"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Borrar Usuario"/>
+        <Property name="text" type="java.lang.String" value="Borrar Rol"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
@@ -319,7 +285,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Crear Usuario"/>
+        <Property name="text" type="java.lang.String" value="Crear Rol"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -331,27 +297,12 @@
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Apellido"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Rol"/>
+        <Property name="text" type="java.lang.String" value="Permisos Asignados"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre de Usuario"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Proyectos asociados"/>
+        <Property name="text" type="java.lang.String" value="Nombre de Rol"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

@@ -10,12 +10,12 @@ package Pantallas;
  *
  * @author diegovelilla
  */
-public class P_AdminUsuarios extends javax.swing.JFrame {
+public class P_AdminRoles extends javax.swing.JFrame {
 
     /**
      * Creates new form P_ConsultarUsuario
      */
-    public P_AdminUsuarios() {
+    public P_AdminRoles() {
         initComponents();
     }
 
@@ -40,10 +40,7 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
-        jCheckBox5 = new javax.swing.JCheckBox();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
 
@@ -54,7 +51,7 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Raleway Medium", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel7.setText("Administración de Usuarios");
+        jLabel7.setText("Administración de Roles");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,36 +75,43 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"jperez", "Juan", "Perez", "jperez@gmail.com"},
-                {"dvelilla", "Diego", "Velilla", "dvelilla@gmail.com"},
-                {"mmartinez", "Maria", "Martinez", "mmartinezhotmail.com"},
-                {"scampos", "Sergio", "Campos", "scampos@live.com"},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"Lider de Proyecto", "Usuario que tiene permisos sobre todos los recursos del Proyecto, asi como la creacion del mismo", "Creacion de roles de proyecto, asignacion de roles de proyecto a usuarios, solicitud de cambios en items de lineas base"},
+                {"Miembro del Proyecto", "Usuario que forma parte de un proyecto y que tiene acceso a ciertos recursos pero sin la posibilidad de modificarlos o eliminarlos", "Consulta de proyectos de los cuales es miembro, permisos dentro de cada proyecto según los roles de proyecto que tiene asignado"},
+                {"Administrador", "Usuario que controla el ingreso, suspension y modificacion de información de los usuarios dentro del sistema", "Creacion, consulta, modificacion y eliminacion de Usuarios"},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Usuario", "Nombre", "Apellido", "Correo Electrónico"
+                "Nombre de Rol", "Descripcion", "Permisos"
             }
         ));
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setRowHeight(64);
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        jButton1.setText("Editar Usuario");
+        jButton1.setText("Editar Rol");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Borrar Usuario");
+        jButton2.setText("Borrar Rol");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -116,19 +120,13 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
 
         jLabel1.setText("Lista de Usuarios");
 
-        jButton3.setText("Crear Usuario");
+        jButton3.setText("Crear Rol");
 
         jLabel2.setText("Filtros de Búsqueda:");
 
-        jCheckBox1.setText("Nombre");
+        jCheckBox1.setText("Permisos Asignados");
 
-        jCheckBox2.setText("Apellido");
-
-        jCheckBox3.setText("Rol");
-
-        jCheckBox4.setText("Nombre de Usuario");
-
-        jCheckBox5.setText("Proyectos asociados");
+        jCheckBox4.setText("Nombre de Rol");
 
         jLabel3.setFont(new java.awt.Font("Raleway Medium", 1, 12)); // NOI18N
         jLabel3.setText("Buscar");
@@ -145,12 +143,6 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
                         .addComponent(jCheckBox4)
                         .addGap(35, 35, 35)
                         .addComponent(jCheckBox1)
-                        .addGap(29, 29, 29)
-                        .addComponent(jCheckBox2)
-                        .addGap(41, 41, 41)
-                        .addComponent(jCheckBox5)
-                        .addGap(39, 39, 39)
-                        .addComponent(jCheckBox3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +162,8 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(142, 142, 142))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(349, 349, 349)
                 .addComponent(jLabel1)
@@ -205,10 +197,7 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox3))
+                    .addComponent(jCheckBox1))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -218,6 +207,10 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,7 +242,7 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new P_AdminUsuarios().setVisible(true);
+                new P_AdminRoles().setVisible(true);
             }
         });
     }
@@ -259,10 +252,7 @@ public class P_AdminUsuarios extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
