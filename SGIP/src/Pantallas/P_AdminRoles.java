@@ -118,7 +118,7 @@ public class P_AdminRoles extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Lista de Usuarios");
+        jLabel1.setText("Lista de Roles");
 
         jButton3.setText("Crear Rol");
 
